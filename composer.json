@@ -1,0 +1,45 @@
+{
+    "name": "khaydarovm/php-clickhouse-migrator",
+    "description": "Migrations for Clickhouse",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Murod Khaydarov",
+            "email": "murod.haydarov@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Khaydarovm\\Clickhouse\\Migrator\\": "src",
+            "Khaydarovm\\Clickhouse\\MigratorTests\\": "tests",
+            "Khaydarovm\\Clickhouse\\MigratorBenchmarks\\": "benchmarks"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "smi2/phpclickhouse": "^1.3",
+        "symfony/yaml": "^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "php-coveralls/php-coveralls": "^2.2",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "roave/security-advisories": "dev-master",
+        "phpmd/phpmd": "^2.8",
+        "phpbench/phpbench": "@stable"
+    },
+    "suggest": {
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit",
+        "cover": "./vendor/bin/phpunit --coverage-clover ./build/phpunit/clover.xml",
+        "coveralls": "./vendor/bin/php-coveralls -v",
+        "check-style": "./vendor/bin/phpcs",
+        "fix-style": [
+            "./vendor/bin/php-cs-fixer fix --config=.php_cs",
+            "./vendor/bin/phpcbf"
+        ],
+        "bench": "./vendor/bin/phpbench run benchmarks/  --report=default",
+        "infection": "infection"
+    }
+}
