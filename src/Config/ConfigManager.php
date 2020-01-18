@@ -14,8 +14,9 @@ use Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException;
  */
 class ConfigManager
 {
-    const PHPConfig = 'php';
-    const YAMLConfig = 'yaml';
+    public const DEFAULT_CONFIG_FILENAME = 'config';
+    public const PHP_CONFIG = 'php';
+    public const YAML_CONFIG = 'yaml';
 
     /**
      * @var string
@@ -46,10 +47,10 @@ class ConfigManager
         $extension = pathinfo($this->configPath, PATHINFO_EXTENSION);
 
         switch ($extension) {
-            case self::PHPConfig:
+            case self::PHP_CONFIG:
                 $parser = new PhpConfig();
                 break;
-            case self::YAMLConfig:
+            case self::YAML_CONFIG:
                 $parser = new YamlConfig();
                 break;
             default:
