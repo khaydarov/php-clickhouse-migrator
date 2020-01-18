@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Khaydarovm\Clickhouse\MigratorBenchMarks\Config;
-
-use Khaydarovm\Clickhouse\Migrator\Config\ConfigManager;
+namespace Khaydarovm\Clickhouse\Migrator\Config;
 
 class ConfigManagerBench
 {

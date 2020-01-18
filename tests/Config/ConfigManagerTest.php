@@ -1,17 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Khaydarovm\Clickhouse\MigratorTests\Config;
+namespace Khaydarovm\Clickhouse\Migrator\Config;
 
-use Khaydarovm\Clickhouse\Migrator\Config\Config;
-use Khaydarovm\Clickhouse\Migrator\Config\ConfigManager;
-use Khaydarovm\Clickhouse\Migrator\Exceptions\ClickhouseMigratorConfigException;
+use Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException;
 use PHPUnit\Framework\TestCase;
 
 class ConfigManagerTest extends TestCase
 {
     /**
-     * @throws ClickhouseMigratorConfigException
+     * @throws ConfigException
      */
     public function testGetConfig()
     {
@@ -29,11 +27,11 @@ class ConfigManagerTest extends TestCase
     }
 
     /**
-     * @throws ClickhouseMigratorConfigException
+     * @throws ConfigException
      */
     public function testGetConfigUnsupportedExtension()
     {
-        $this->expectException(ClickhouseMigratorConfigException::class);
+        $this->expectException(ConfigException::class);
         $this->expectExceptionMessage('Extension is not supported');
 
         // XML is not supported
@@ -42,11 +40,11 @@ class ConfigManagerTest extends TestCase
     }
 
     /**
-     * @throws ClickhouseMigratorConfigException
+     * @throws ConfigException
      */
     public function testGetConfigFileNotFound()
     {
-        $this->expectException(ClickhouseMigratorConfigException::class);
+        $this->expectException(ConfigException::class);
         $this->expectExceptionMessage('Config file not found');
 
         // XML is not supported

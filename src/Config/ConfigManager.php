@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Khaydarovm\Clickhouse\Migrator\Config;
 
-use Khaydarovm\Clickhouse\Migrator\Config\Parsers\PhpConfigParser;
-use Khaydarovm\Clickhouse\Migrator\Config\Parsers\YamlConfigParser;
-use Khaydarovm\Clickhouse\Migrator\Exceptions\ClickhouseMigratorConfigException;
+use Khaydarovm\Clickhouse\Migrator\Config\Parser\PhpConfig;
+use Khaydarovm\Clickhouse\Migrator\Config\Parser\YamlConfig;
+use Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException;
 
 /**
  * Class ConfigManager
@@ -33,30 +33,30 @@ class ConfigManager
     }
 
     /**
-     * @throws ClickhouseMigratorConfigException
+     * @throws ConfigException
      *
      * @return Config
-     *
      */
     public function getConfig(): Config
     {
         if (!file_exists($this->configPath)) {
-            throw new ClickhouseMigratorConfigException('Config file not found');
+            throw new ConfigException('Config file not found');
         }
 
         $extension = pathinfo($this->configPath, PATHINFO_EXTENSION);
 
         switch ($extension) {
             case self::PHPConfig:
-                $parsedConfig = PhpConfigParser::parse($this->getConfigPath());
+                $parser = new PhpConfig();
                 break;
             case self::YAMLConfig:
-                $parsedConfig = YamlConfigParser::parse($this->getConfigPath());
+                $parser = new YamlConfig();
                 break;
             default:
-                throw new ClickhouseMigratorConfigException('Extension is not supported');
+                throw new ConfigException('Extension is not supported');
         }
 
+        $parsedConfig = $parser->parse($this->getConfigPath());
         $config = $this->prepare($parsedConfig);
 
         return new Config($config);

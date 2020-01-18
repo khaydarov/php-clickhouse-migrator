@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Khaydarovm\Clickhouse\Migrator\Exceptions;
 
 /**
- * Class ClickhouseMigratorConfigException
+ * Class ConfigException
  * @package Khaydarovm\Clickhouse\Migrator\Exceptions
  */
-class ClickhouseMigratorConfigException extends \Exception
+class ConfigException extends \Exception
 {
 }

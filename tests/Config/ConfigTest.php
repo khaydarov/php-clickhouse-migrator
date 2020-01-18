@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace Khaydarovm\Clickhouse\MigratorTests\Config;
+namespace Khaydarovm\Clickhouse\Migrator\Config;
 
-use Khaydarovm\Clickhouse\Migrator\Config\Config;
 use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase

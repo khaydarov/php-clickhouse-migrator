@@ -10,9 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Khaydarovm\\Clickhouse\\Migrator\\": "src",
-            "Khaydarovm\\Clickhouse\\MigratorTests\\": "tests",
-            "Khaydarovm\\Clickhouse\\MigratorBenchmarks\\": "benchmarks"
+            "Khaydarovm\\Clickhouse\\Migrator\\": "src"
         }
     },
     "require": {
