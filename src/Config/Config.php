@@ -5,7 +5,6 @@ namespace Khaydarovm\Clickhouse\Migrator\Config;
 
 /**
  * Class Config
- *
  * @package Khaydarovm\Clickhouse\Migrator\Config
  */
 class Config

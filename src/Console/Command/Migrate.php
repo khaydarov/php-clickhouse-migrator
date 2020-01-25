@@ -10,6 +10,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Migrate extends AbstractCommand
 {
+    /**
+     * @var bool
+     */
+    protected $requireConfig = true;
+
+    /**
+     * @var bool
+     */
+    protected $requireEnvironment = true;
+
+    /**
+     * @inheritDoc
+     */
     protected function configure()
     {
         parent::configure();
@@ -26,8 +39,26 @@ class Migrate extends AbstractCommand
             );
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @throws \Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException
+     *
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        return 1;
+        $environment = $input->getOption('environment');
+
+        if (empty($environment)) {
+            throw new \Exception("Environment is empty");
+        }
+
+        $this->getManager()
+            ->prepare($environment)
+            ->migrate();
+
+        return 0;
     }
 }

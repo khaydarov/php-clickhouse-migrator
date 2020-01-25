@@ -10,6 +10,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Init extends AbstractCommand
 {
+    /**
+     * @var array
+     */
+    private $allowedFormats = ['php', 'yaml'];
+
     protected function configure()
     {
         parent::configure();
@@ -22,19 +27,36 @@ class Init extends AbstractCommand
                 '--format',
                 '-f',
                 InputOption::VALUE_REQUIRED
-            )
-            ->addOption(
-                '--path',
-                '-p',
-                InputOption::VALUE_OPTIONAL
             );
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @throws \Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        echo $input->getOption('format');
-        echo $input->getOption('path');
+        $projectPath = $this->getProjectRoot();
 
-        return 1;
+        if (!is_writable($projectPath)) {
+            throw new \Exception(sprintf("Directory %s must be writable", $projectPath));
+        }
+
+        $format = $input->getOption('format');
+
+        if (!in_array($format, $this->allowedFormats, true)) {
+            throw new \Exception(sprintf("Config format not allowed"));
+        }
+
+        $template = sprintf("%s/../../../templates/config.%s", __DIR__, $format);
+        $targetPath = sprintf("%s/config.%s", $projectPath, $format);
+
+        if (!copy($template, $targetPath)) {
+            throw new \Exception(sprintf("Can't write config to target directory"));
+        }
+
+        $output->writeln(sprintf("config.%s created at %s", $format, $projectPath));
     }
 }

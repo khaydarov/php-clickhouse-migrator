@@ -3,27 +3,90 @@ declare(strict_types=1);
 
 namespace Khaydarovm\Clickhouse\Migrator\Console;
 
+use Khaydarovm\Clickhouse\Migrator\Manager;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class AbstractCommand
+ *
+ * @package Khaydarovm\Clickhouse\Migrator\Console
+ */
 abstract class AbstractCommand extends Command
 {
+    /**
+     * @var bool
+     */
+    protected $requireConfig = false;
+
+    /**
+     * @var bool
+     */
+    protected $requireEnvironment = false;
+
+    /**
+     * @var Manager
+     */
+    private $manager;
+
     protected function configure()
     {
         parent::configure();
 
-        $this->addOption(
-            '--configuration',
-            '-c',
-            InputOption::VALUE_REQUIRED,
-            'The configuration file'
-        );
+        if ($this->requireConfig) {
+            $this->addOption(
+                '--configuration',
+                '-c',
+                InputOption::VALUE_REQUIRED,
+                'Config file'
+            );
+        }
 
-        $this->addOption(
-            '--environment',
-            '-e',
-            InputOption::VALUE_REQUIRED,
-            'Environment name'
-        );
+        if ($this->requireEnvironment) {
+            $this->addOption(
+                '--environment',
+                '-e',
+                InputOption::VALUE_REQUIRED,
+                'Environment name'
+            );
+        }
+    }
+
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        parent::initialize($input, $output);
+
+        if ($this->requireConfig) {
+            $configPath = $input->getOption('configuration');
+            $this->init($configPath);
+        }
+    }
+
+    /**
+     * @return false|string
+     */
+    protected function getProjectRoot()
+    {
+        return getcwd();
+    }
+
+    /**
+     * @param string $path
+     */
+    protected function init(string $path)
+    {
+        $manager = new Manager($path);
+
+        $this->manager = $manager;
+    }
+
+    /**
+     * @return Manager
+     */
+    protected function getManager(): Manager
+    {
+        return $this->manager;
     }
 }

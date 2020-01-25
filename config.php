@@ -7,12 +7,12 @@ return [
     ],
     'environments' => [
         'development' => [
-            'cluster' => 'production',
-            'host' => 'host',
-            'port' => 'port',
-            'database' => 'database',
-            'username' => 'username',
-            'password' => 'password'
+            'cluster' => 'local',
+            'host' => 'localhost',
+            'port' => '8123',
+            'database' => 'golang_test',
+            'username' => 'default',
+            'password' => ''
         ]
     ]
 ];
