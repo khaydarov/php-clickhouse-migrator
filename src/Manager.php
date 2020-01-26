@@ -69,6 +69,9 @@ class Manager
         return $this;
     }
 
+    /**
+     * @throws Exceptions\MigrationException
+     */
     public function migrate()
     {
         $this->migrator->migrate();

@@ -71,6 +71,8 @@ class Migrator
 
     /**
      * @param Revision $revision
+     *
+     * @throws Exceptions\MigrationException
      */
     public function beforeExecution(Revision $revision)
     {
@@ -79,6 +81,9 @@ class Migrator
         echo PHP_EOL;
     }
 
+    /**
+     * @throws Exceptions\MigrationException
+     */
     public function migrate()
     {
         $migrationPath = $this->config->getMigrationsPath();
