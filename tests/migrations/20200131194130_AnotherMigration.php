@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
 
 use Khaydarovm\Clickhouse\Migrator\AbstractMigration;
 
 /**
- * Class MigrationTemplate
+ * Class AnotherMigration
  */
-class MigrationTemplate extends AbstractMigration
+class AnotherMigration extends AbstractMigration
 {
     /**
      * Up Method.
@@ -14,6 +15,7 @@ class MigrationTemplate extends AbstractMigration
      */
     public function up(): void
     {
+        throw new Exception();
     }
 
     /**

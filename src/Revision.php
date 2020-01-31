@@ -85,7 +85,7 @@ class Revision
     public function getRevisionClass()
     {
         if ($this->name === null) {
-            throw new MigrationException('Class name is not defined');
+            throw new MigrationException('class name is not defined');
         }
 
         return $this->name;

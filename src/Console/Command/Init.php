@@ -30,8 +30,8 @@ class Init extends AbstractCommand
 
         $this
             ->setName('init')
-            ->setDescription('initialize clickhouse migrations project')
-            ->setHelp('initialize clickhouse migrations project')
+            ->setDescription('Initialize Clickhouse migrations project')
+            ->setHelp('Initialize Clickhouse migrations project')
             ->addOption(
                 '--format',
                 '-f',
@@ -40,6 +40,8 @@ class Init extends AbstractCommand
     }
 
     /**
+     * @inheritDoc
+     *
      * @param InputInterface  $input
      * @param OutputInterface $output
      *

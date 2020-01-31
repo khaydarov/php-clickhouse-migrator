@@ -25,7 +25,8 @@
         "friendsofphp/php-cs-fixer": "^2.16",
         "roave/security-advisories": "dev-master",
         "phpmd/phpmd": "^2.8",
-        "phpbench/phpbench": "@dev"
+        "phpbench/phpbench": "@dev",
+        "psy/psysh": "@stable"
     },
     "suggest": {
     },

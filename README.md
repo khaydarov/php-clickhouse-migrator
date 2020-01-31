@@ -2,6 +2,10 @@
 
 Migrations for Clickhouse
 
+[![Daily Downloads](https://poser.pugx.org/khaydarov/php-clickhouse-migrator/d/daily)](https://packagist.org/packages/khaydarov/php-clickhouse-migrator)
+[![Latest Stable Version](https://poser.pugx.org/khaydarov/php-clickhouse-migrator/v/stable.png)](https://packagist.org/packages/khaydarov/php-clickhouse-migrator)
+[![Coverage Status](https://coveralls.io/repos/khaydarov/php-clickhouse-migrator/badge.png)](https://coveralls.io/r/khaydarov/php-clickhouse-migrator)
+
 ## Requirements
 
 PHP 7.0 or newer
@@ -40,11 +44,9 @@ Options:
 Available commands:
   create    Create new migration file
   help      Displays help for a command
-  init      initialize clickhouse migrations
+  init      Initialize Clickhouse migrations project
   list      Lists commands
   migrate   Migrate to specific revision of database
-  rollback  Rollback to specific version of database
-  status    Show status of migrations
 ```
 
 ### Initialization
@@ -68,7 +70,7 @@ There are two supporting config extensions: YAML and PHP
 The config structure
 
 ```yaml
-default_environment: development
+default: development
 
 paths:
   migrations: migrations
@@ -99,7 +101,7 @@ environments:
     password: pass
 ```
 
-`default_environment` points to the environment credentials.
+`default` points to the environment credentials.
 This property value used when `-e` is not passed
 
 ### Creating new revision
@@ -134,15 +136,14 @@ class RevisionName extends AbstractMigration
 
 `up()` method is used for migrations and `down()` for rollbacks.
 
-### Migration status
+Currently `rollback` and `status` are not implemented. But it will be done soon.
 
-The `status` command shows the list of executed revisions. Status is `up` when revision is applied or
-`down` when it is reverted
+Initially AbstractMigration provides three methods:
+
+- getDatabase() — the database name from config file
+- getCluster() - the cluster name from config file
+- execute(string $query) - method executes passed SQL query
 
 ## Development
 
-not ready yet
-
 ## Tests
-
-not ready yet

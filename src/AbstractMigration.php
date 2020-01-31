@@ -5,7 +5,13 @@ namespace Khaydarovm\Clickhouse\Migrator;
 
 use ClickHouseDB\Client;
 use Khaydarovm\Clickhouse\Migrator\Config\Config;
+use Khaydarovm\Clickhouse\Migrator\Exceptions\MigrationException;
 
+/**
+ * Class AbstractMigration
+ *
+ * @package Khaydarovm\Clickhouse\Migrator
+ */
 abstract class AbstractMigration
 {
     /**
@@ -43,28 +49,24 @@ abstract class AbstractMigration
      */
     protected function getCluster(): string
     {
-        return '';
+        return $this->config->getCluster();
     }
 
     /**
      * @param string $query
+     *
+     * @throws MigrationException
      */
     protected function execute(string $query): void
     {
         try {
             $this->client->write($query);
         } catch (\Exception $e) {
-            exit();
+            throw new MigrationException($e->getMessage());
         }
     }
 
-    /**
-     * @return mixed|void
-     */
-    abstract public function up();
+    abstract public function up(): void;
 
-    /**
-     * @return mixed|void
-     */
-    abstract public function down();
+    abstract public function down(): void;
 }

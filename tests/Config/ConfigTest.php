@@ -11,20 +11,22 @@ class ConfigTest extends TestCase
     {
         $config = [
             'host' => 'localhost',
-            'port' => '2333',
+            'port' => 2333,
+            'cluster' => 'staging',
             'username' => 'test',
             'password' => 'pass',
-            'migrationsPath' => 'migrations',
+            'migrations' => 'migrations',
             'database' => 'db',
         ];
 
         $fixture = new Config($config);
 
+        $this->assertSame($fixture->getCluster(), $config['cluster']);
         $this->assertSame($fixture->getHost(), $config['host']);
         $this->assertSame($fixture->getPort(), $config['port']);
         $this->assertSame($fixture->getUsername(), $config['username']);
         $this->assertSame($fixture->getPassword(), $config['password']);
         $this->assertSame($fixture->getDatabase(), $config['database']);
-        $this->assertSame($fixture->getMigrationsPath(), $config['migrationsPath']);
+        $this->assertSame($fixture->getMigrationsPath(), $config['migrations']);
     }
 }

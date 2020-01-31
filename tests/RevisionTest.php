@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 class RevisionTest extends TestCase
 {
+    /**
+     * @throws MigrationException
+     */
     public function testRevisionSetUp()
     {
         $id = '10';
@@ -25,6 +28,9 @@ class RevisionTest extends TestCase
         $this->assertSame($revision->getRevisionClass(), $name);
     }
 
+    /**
+     * @throws MigrationException
+     */
     public function testRevisionDefaultFilename()
     {
         $this->expectException(MigrationException::class);
@@ -39,10 +45,13 @@ class RevisionTest extends TestCase
         $this->assertSame($revision->getRevisionFile(), null);
     }
 
+    /**
+     * @throws MigrationException
+     */
     public function testRevisionDefaultClassname()
     {
         $this->expectException(MigrationException::class);
-        $this->expectErrorMessage('Class name is not defined');
+        $this->expectErrorMessage('class name is not defined');
 
         $id = '11';
         $revision = new Revision();

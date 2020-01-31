@@ -10,7 +10,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Status extends AbstractCommand
 {
-    protected function configure()
+    /**
+     * @inheritDoc
+     */
+    protected function configure(): void
     {
         parent::configure();
 
@@ -25,7 +28,15 @@ class Status extends AbstractCommand
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * @inheritDoc
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return 1;
     }

@@ -8,7 +8,7 @@ namespace Khaydarovm\Clickhouse\Migrator\Config;
  *
  * @package Khaydarovm\Clickhouse\Migrator\Config
  */
-final class Config
+class Config
 {
     /**
      * @var array
@@ -23,6 +23,14 @@ final class Config
     public function __construct(array $data)
     {
         $this->data = $data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCluster(): string
+    {
+        return $this->data['cluster'];
     }
 
     /**
@@ -54,7 +62,7 @@ final class Config
      */
     public function getMigrationsPath(): string
     {
-        return $this->data['migrationsPath'];
+        return $this->data['migrations'];
     }
 
     /**

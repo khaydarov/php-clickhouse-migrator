@@ -4,13 +4,14 @@ declare(strict_types=1);
 namespace Khaydarovm\Clickhouse\Migrator\Console\Command;
 
 use Khaydarovm\Clickhouse\Migrator\Console\AbstractCommand;
+use Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class Create
+ *
  * @package Khaydarovm\Clickhouse\Migrator\Console\Command
  */
 class Create extends AbstractCommand
@@ -23,7 +24,7 @@ class Create extends AbstractCommand
     /**
      * @inheritDoc
      */
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
@@ -40,28 +41,35 @@ class Create extends AbstractCommand
 
     /**
      * @inheritDoc
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @throws ConfigException
+     *
+     * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $name = $input->getArgument('name');
 
         if (empty($name)) {
-            throw new \Exception('Name is not specified');
+            throw new ConfigException('Name is not specified');
         }
 
         if (!preg_match('/^([A-Z][a-z0-9]+)+$/', $name)) {
-            throw new \Exception('Name must be in CamelCase notation');
+            throw new ConfigException('Name must be in CamelCase notation');
         }
 
-        $directory = $this->getManager()->getConfig()->getMigrationsPath();
+        $directory = $this->getManager()->getMigrationsPath();
         $migrationFile = sprintf("%s/%s_%s.php", $directory, date('YmdHis'), $name);
 
         if (file_exists($migrationFile)) {
-            throw new \Exception("Migration file with same name already exists");
+            throw new ConfigException('Migration file with same name already exists');
         }
 
         if (!is_dir($directory)) {
-            throw new \Exception(sprintf("Directory doesn't exist"));
+            throw new ConfigException(sprintf("Directory doesn't exist"));
         }
 
         $migrationFileContent = str_replace(
@@ -72,7 +80,7 @@ class Create extends AbstractCommand
 
         file_put_contents($migrationFile, $migrationFileContent);
 
-        $output->writeln(sprintf("New migration create at %s", $migrationFile));
+        $output->writeln(sprintf("<info>New migration create at %s</info>", $migrationFile));
 
         return 0;
     }

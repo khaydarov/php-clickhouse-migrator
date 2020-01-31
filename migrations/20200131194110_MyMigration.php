@@ -3,9 +3,9 @@
 use Khaydarovm\Clickhouse\Migrator\AbstractMigration;
 
 /**
- * Class MigrationTemplate
+ * Class MyMigration
  */
-class MigrationTemplate extends AbstractMigration
+class MyMigration extends AbstractMigration
 {
     /**
      * Up Method.
@@ -14,6 +14,7 @@ class MigrationTemplate extends AbstractMigration
      */
     public function up(): void
     {
+        echo 'Hey';
     }
 
     /**

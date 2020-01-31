@@ -29,6 +29,45 @@ class ConfigManagerTest extends TestCase
     /**
      * @throws ConfigException
      */
+    public function testGettingMigrationPath()
+    {
+        // load PHP config
+        $manager = new ConfigManager(__DIR__ . '/configs/config.php');
+        $path = $manager->getMigrationsPath();
+
+        $this->assertSame('migrations', $path);
+    }
+
+    /**
+     * @throws ConfigException
+     */
+    public function testEnvironmentConfig()
+    {
+        // load PHP config
+        $manager = new ConfigManager(__DIR__ . '/configs/config.php');
+        $config = $manager->getConfig('production');
+
+        $this->assertSame('production', $config->getCluster());
+        $this->assertSame('production.host', $config->getHost());
+        $this->assertSame(1122, $config->getPort());
+    }
+
+    /**
+     * @throws ConfigException
+     */
+    public function testNonExistingEnviroment()
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('Environment does not exist');
+
+        // load PHP config
+        $manager = new ConfigManager(__DIR__ . '/configs/config.php');
+        $config = $manager->getConfig('space');
+    }
+
+    /**
+     * @throws ConfigException
+     */
     public function testGetConfigUnsupportedExtension()
     {
         $this->expectException(ConfigException::class);
@@ -49,6 +88,6 @@ class ConfigManagerTest extends TestCase
 
         // XML is not supported
         $manager = new ConfigManager(__DIR__ . '/config.php');
-        $config = $manager->getConfig();
+        $manager->getConfig();
     }
 }

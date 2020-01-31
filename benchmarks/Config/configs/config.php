@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'default_environment' => 'development',
+    'default' => 'development',
     'paths' => [
         'migrations' => 'migrations'
     ],

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Khaydarovm\Clickhouse\Migrator\Console;
 
-use Khaydarovm\Clickhouse\Migrator\Config\Config;
 use Khaydarovm\Clickhouse\Migrator\Config\ConfigManager;
 use Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException;
 use Khaydarovm\Clickhouse\Migrator\Manager;
@@ -37,7 +36,7 @@ abstract class AbstractCommand extends Command
     /**
      * @inheritDoc
      */
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
@@ -68,12 +67,16 @@ abstract class AbstractCommand extends Command
      *
      * @throws ConfigException
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         parent::initialize($input, $output);
 
         if ($this->requireConfig) {
             $configPath = $input->getOption('configuration');
+
+            if (empty($configPath) || !file_exists($configPath)) {
+                throw new ConfigException("Can't find config file");
+            }
             $this->init($configPath);
         }
     }
@@ -81,7 +84,7 @@ abstract class AbstractCommand extends Command
     /**
      * @return false|string
      */
-    protected function getProjectRoot()
+    protected function getProjectRoot(): string
     {
         return getcwd();
     }

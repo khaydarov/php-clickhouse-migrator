@@ -9,6 +9,11 @@ use Khaydarovm\Clickhouse\Migrator\Console\Command\Migrate;
 use Khaydarovm\Clickhouse\Migrator\Console\Command\Rollback;
 use Khaydarovm\Clickhouse\Migrator\Console\Command\Status;
 
+/**
+ * Class Application
+ *
+ * @package Khaydarovm\Clickhouse\Migrator
+ */
 class Application extends \Symfony\Component\Console\Application
 {
     public function __construct(string $name = 'UNKNOWN', string $version = 'UNKNOWN')

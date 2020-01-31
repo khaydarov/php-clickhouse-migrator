@@ -8,9 +8,17 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class Rollback
+ *
+ * @package Khaydarovm\Clickhouse\Migrator\Console\Command
+ */
 class Rollback extends AbstractCommand
 {
-    protected function configure()
+    /**
+     * @inheritDoc
+     */
+    protected function configure(): void
     {
         parent::configure();
 
@@ -26,7 +34,17 @@ class Rollback extends AbstractCommand
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * @inheritDoc
+     *
+     * @todo not implemented yet
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return 1;
     }

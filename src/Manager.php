@@ -33,12 +33,12 @@ class Manager
     /**
      * @var callable
      */
-    private $beforeRevisionMigrationCallback;
+    private $beforeExecutionCallback;
 
     /**
      * @var callable
      */
-    private $afterRevisionMigrationCallback;
+    private $afterExecutionCallback;
 
     /**
      * @var callable
@@ -81,7 +81,17 @@ class Manager
             $this->getConfig($environment),
         );
 
-        $this->migrator->prepare();
+        return $this;
+    }
+
+    /**
+     * @param callable $callable
+     *
+     * @return Manager
+     */
+    public function beforeExecution(callable $callable): self
+    {
+        $this->beforeExecutionCallback = $callable;
 
         return $this;
     }
@@ -91,21 +101,9 @@ class Manager
      *
      * @return Manager
      */
-    public function beforeRevisionMigration(callable $callable): self
+    public function afterExecution(callable $callable): self
     {
-        $this->beforeRevisionMigrationCallback = $callable;
-
-        return $this;
-    }
-
-    /**
-     * @param callable $callable
-     *
-     * @return Manager
-     */
-    public function afterRevisionMigration(callable $callable): self
-    {
-        $this->afterRevisionMigrationCallback = $callable;
+        $this->afterExecutionCallback = $callable;
 
         return $this;
     }
@@ -129,27 +127,35 @@ class Manager
      */
     public function migrate(string $revisionId = null): void
     {
+        // Prepare Migrator schema
+        $this->migrator->prepare();
+
         $migrationPath = $this->getMigrationsPath();
 
+        $appliedRevisions = $this->migrator->getAppliedRevisions();
+
+        if (\in_array($revisionId, $appliedRevisions, true)) {
+            throw new MigrationException('This revision is already applied');
+        }
+
         if (!$revisionId) {
-            $applied = $this->migrator->getAppliedRevisions();
-            $revisions = $this->getAvailableRevisions($migrationPath, $applied);
+            $revisions = $this->getAvailableRevisions($migrationPath, $appliedRevisions);
         } else {
-            $revisions = [$this->getRevisionById($revisionId)];
+            $revisions = [$this->getRevisionById($migrationPath, $revisionId)];
         }
 
         foreach ($revisions as $revision) {
             /** @var Revision $revision */
             $path = $this->getRevisionPath($migrationPath, $revision);
 
-            if ($this->beforeRevisionMigrationCallback) {
-                call_user_func($this->beforeRevisionMigrationCallback, $revision);
+            if ($this->beforeExecutionCallback) {
+                call_user_func($this->beforeExecutionCallback, $revision);
             }
 
-//            $this->migrator->migrate($path, $revision);
+            $this->migrator->migrate($path, $revision);
 
-            if ($this->afterRevisionMigrationCallback) {
-                call_user_func($this->afterRevisionMigrationCallback, $revision);
+            if ($this->afterExecutionCallback) {
+                call_user_func($this->afterExecutionCallback, $revision);
             }
         }
 
@@ -160,6 +166,8 @@ class Manager
     }
 
     /**
+     * @todo implement
+     *
      * @param string|null $revisionId
      */
     public function rollback(string $revisionId = null)
@@ -195,7 +203,7 @@ class Manager
     /**
      * @return string
      */
-    private function getMigrationsPath(): string
+    public function getMigrationsPath(): string
     {
         return $this->configManager->getMigrationsPath();
     }
@@ -217,10 +225,16 @@ class Manager
      * @param string $path
      * @param array  $alreadyApplied
      *
+     * @throws MigrationException
+     *
      * @return array
      */
     public function getAvailableRevisions(string $path, array $alreadyApplied): array
     {
+        if (!is_dir($path)) {
+            throw new MigrationException('Path is not directory');
+        }
+
         $list = [];
         $directory = new \DirectoryIterator($path);
 
@@ -250,15 +264,39 @@ class Manager
     }
 
     /**
-     * @param string $id
+     * @param string $path
+     * @param string $revisionId
+     *
+     * @throws MigrationException
      *
      * @return Revision
      */
-    public function getRevisionById(string $id): Revision
+    public function getRevisionById(string $path, string $revisionId): Revision
     {
-        $revision = new Revision();
-        $revision->setId($id);
+        if (!is_dir($path)) {
+            throw new MigrationException('Path is not directory');
+        }
 
-        return $revision;
+        $directory = new \DirectoryIterator($path);
+
+        foreach ($directory as $file) {
+            if (!$file->isFile()) {
+                continue;
+            }
+
+            list($id, $className) = explode('_', $file->getBasename('.php'));
+
+            if ($revisionId === $id) {
+                $revision = new Revision();
+                $revision
+                    ->setId($id)
+                    ->setName($className)
+                    ->setFilename($file->getFilename());
+
+                return $revision;
+            }
+        }
+
+        throw new MigrationException('Revision not found');
     }
 }

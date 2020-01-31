@@ -1,111 +1,278 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1578255845">
-  <project timestamp="1578255845">
+<coverage generated="1580507834">
+  <project timestamp="1580507834">
     <package name="Khaydarovm\Clickhouse\Migrator">
       <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/AbstractMigration.php">
-        <class name="Khaydarovm\Clickhouse\Migrator\AbstractMigration" namespace="Khaydarovm\Clickhouse\Migrator">
-          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        <class name="Khaydarovm\Clickhouse\Migrator\AbstractMigration" namespace="Khaydarovm\Clickhouse\Migrator" fullPackage="Khaydarovm" package="Khaydarovm">
+          <metrics complexity="7" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="3" elements="13" coveredelements="4"/>
         </class>
-        <metrics loc="82" ncloc="-66" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        <line num="33" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="35" type="stmt" count="2"/>
+        <line num="36" type="stmt" count="2"/>
+        <line num="37" type="stmt" count="2"/>
+        <line num="42" type="method" name="getDatabase" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="50" type="method" name="getCluster" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="60" type="method" name="execute" visibility="protected" complexity="2" crap="6" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <metrics loc="72" ncloc="44" classes="1" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="3" elements="13" coveredelements="4"/>
+      </file>
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Application.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Application" namespace="Khaydarovm\Clickhouse\Migrator" fullPackage="Khaydarovm" package="Khaydarovm">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="8" coveredelements="0"/>
+        </class>
+        <line num="19" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="21" type="stmt" count="0"/>
+        <line num="23" type="stmt" count="0"/>
+        <line num="24" type="stmt" count="0"/>
+        <line num="25" type="stmt" count="0"/>
+        <line num="26" type="stmt" count="0"/>
+        <line num="27" type="stmt" count="0"/>
+        <line num="28" type="stmt" count="0"/>
+        <metrics loc="29" ncloc="24" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="8" coveredelements="0"/>
+      </file>
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Manager.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Manager" namespace="Khaydarovm\Clickhouse\Migrator" fullPackage="Khaydarovm" package="Khaydarovm">
+          <metrics complexity="28" methods="13" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="74" coveredstatements="35" elements="87" coveredelements="40"/>
+        </class>
+        <line num="53" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="55" type="stmt" count="7"/>
+        <line num="56" type="stmt" count="7"/>
+        <line num="65" type="method" name="getConfig" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="67" type="stmt" count="3"/>
+        <line num="77" type="method" name="prepare" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="81" type="stmt" count="0"/>
+        <line num="84" type="stmt" count="0"/>
+        <line num="92" type="method" name="beforeExecution" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="94" type="stmt" count="0"/>
+        <line num="96" type="stmt" count="0"/>
+        <line num="104" type="method" name="afterExecution" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="106" type="stmt" count="0"/>
+        <line num="108" type="stmt" count="0"/>
+        <line num="116" type="method" name="whenDone" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="118" type="stmt" count="0"/>
+        <line num="120" type="stmt" count="0"/>
+        <line num="128" type="method" name="migrate" visibility="public" complexity="7" crap="56" count="0"/>
+        <line num="131" type="stmt" count="0"/>
+        <line num="133" type="stmt" count="0"/>
+        <line num="135" type="stmt" count="0"/>
+        <line num="137" type="stmt" count="0"/>
+        <line num="138" type="stmt" count="0"/>
+        <line num="141" type="stmt" count="0"/>
+        <line num="142" type="stmt" count="0"/>
+        <line num="144" type="stmt" count="0"/>
+        <line num="147" type="stmt" count="0"/>
+        <line num="149" type="stmt" count="0"/>
+        <line num="151" type="stmt" count="0"/>
+        <line num="152" type="stmt" count="0"/>
+        <line num="155" type="stmt" count="0"/>
+        <line num="157" type="stmt" count="0"/>
+        <line num="158" type="stmt" count="0"/>
+        <line num="163" type="stmt" count="0"/>
+        <line num="164" type="stmt" count="0"/>
+        <line num="166" type="stmt" count="0"/>
+        <line num="173" type="method" name="rollback" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="176" type="stmt" count="0"/>
+        <line num="185" type="method" name="getClient" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="187" type="stmt" count="0"/>
+        <line num="189" type="stmt" count="0"/>
+        <line num="190" type="stmt" count="0"/>
+        <line num="191" type="stmt" count="0"/>
+        <line num="192" type="stmt" count="0"/>
+        <line num="193" type="stmt" count="0"/>
+        <line num="194" type="stmt" count="0"/>
+        <line num="197" type="stmt" count="0"/>
+        <line num="200" type="stmt" count="0"/>
+        <line num="206" type="method" name="getMigrationsPath" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="208" type="stmt" count="1"/>
+        <line num="219" type="method" name="getRevisionPath" visibility="private" complexity="1" crap="2" count="0"/>
+        <line num="221" type="stmt" count="0"/>
+        <line num="232" type="method" name="getAvailableRevisions" visibility="public" complexity="5" crap="5" count="1"/>
+        <line num="234" type="stmt" count="1"/>
+        <line num="235" type="stmt" count="1"/>
+        <line num="238" type="stmt" count="1"/>
+        <line num="239" type="stmt" count="1"/>
+        <line num="241" type="stmt" count="1"/>
+        <line num="242" type="stmt" count="1"/>
+        <line num="243" type="stmt" count="1"/>
+        <line num="246" type="stmt" count="1"/>
+        <line num="248" type="stmt" count="1"/>
+        <line num="249" type="stmt" count="1"/>
+        <line num="252" type="stmt" count="1"/>
+        <line num="254" type="stmt" count="1"/>
+        <line num="255" type="stmt" count="1"/>
+        <line num="256" type="stmt" count="1"/>
+        <line num="258" type="stmt" count="1"/>
+        <line num="261" type="stmt" count="1"/>
+        <line num="263" type="stmt" count="1"/>
+        <line num="274" type="method" name="getRevisionById" visibility="public" complexity="5" crap="5" count="2"/>
+        <line num="276" type="stmt" count="2"/>
+        <line num="277" type="stmt" count="1"/>
+        <line num="280" type="stmt" count="2"/>
+        <line num="282" type="stmt" count="2"/>
+        <line num="283" type="stmt" count="2"/>
+        <line num="284" type="stmt" count="2"/>
+        <line num="287" type="stmt" count="2"/>
+        <line num="289" type="stmt" count="2"/>
+        <line num="290" type="stmt" count="1"/>
+        <line num="292" type="stmt" count="1"/>
+        <line num="293" type="stmt" count="1"/>
+        <line num="294" type="stmt" count="1"/>
+        <line num="296" type="stmt" count="1"/>
+        <line num="300" type="stmt" count="1"/>
+        <metrics loc="302" ncloc="194" classes="1" methods="13" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="74" coveredstatements="35" elements="87" coveredelements="40"/>
+      </file>
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Migrator.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Migrator" namespace="Khaydarovm\Clickhouse\Migrator" fullPackage="Khaydarovm" package="Khaydarovm">
+          <metrics complexity="10" methods="7" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="36" elements="44" coveredelements="42"/>
+        </class>
+        <line num="53" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="6"/>
+        <line num="55" type="stmt" count="6"/>
+        <line num="56" type="stmt" count="6"/>
+        <line num="57" type="stmt" count="6"/>
+        <line num="63" type="method" name="prepare" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="78" type="stmt" count="1"/>
+        <line num="79" type="stmt" count="1"/>
+        <line num="84" type="method" name="beforeExecution" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="86" type="stmt" count="2"/>
+        <line num="87" type="stmt" count="2"/>
+        <line num="95" type="method" name="migrate" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="97" type="stmt" count="2"/>
+        <line num="99" type="stmt" count="2"/>
+        <line num="102" type="stmt" count="2"/>
+        <line num="105" type="stmt" count="2"/>
+        <line num="109" type="stmt" count="2"/>
+        <line num="110" type="stmt" count="1"/>
+        <line num="111" type="stmt" count="1"/>
+        <line num="115" type="stmt" count="1"/>
+        <line num="116" type="stmt" count="1"/>
+        <line num="124" type="method" name="rollback" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="126" type="stmt" count="0"/>
+        <line num="134" type="method" name="afterExecution" visibility="public" complexity="3" crap="3" count="3"/>
+        <line num="136" type="stmt" count="3"/>
+        <line num="139" type="stmt" count="3"/>
+        <line num="140" type="stmt" count="3"/>
+        <line num="143" type="stmt" count="3"/>
+        <line num="144" type="stmt" count="3"/>
+        <line num="145" type="stmt" count="3"/>
+        <line num="146" type="stmt" count="3"/>
+        <line num="147" type="stmt" count="3"/>
+        <line num="148" type="stmt" count="3"/>
+        <line num="152" type="stmt" count="3"/>
+        <line num="160" type="stmt" count="1"/>
+        <line num="161" type="stmt" count="1"/>
+        <line num="164" type="stmt" count="2"/>
+        <line num="165" type="stmt" count="1"/>
+        <line num="167" type="stmt" count="1"/>
+        <line num="174" type="method" name="getAppliedRevisions" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="176" type="stmt" count="1"/>
+        <line num="177" type="stmt" count="1"/>
+        <line num="179" type="stmt" count="1"/>
+        <metrics loc="181" ncloc="115" classes="1" methods="7" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="36" elements="44" coveredelements="42"/>
       </file>
       <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Revision.php">
         <class name="Khaydarovm\Clickhouse\Migrator\Revision" namespace="Khaydarovm\Clickhouse\Migrator" fullPackage="App" package="App">
-          <metrics complexity="6" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="15" coveredelements="0"/>
+          <metrics complexity="8" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="19" coveredelements="19"/>
         </class>
-        <line num="32" type="method" name="setId" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="34" type="stmt" count="0"/>
-        <line num="36" type="stmt" count="0"/>
-        <line num="44" type="method" name="setName" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="46" type="stmt" count="0"/>
-        <line num="48" type="stmt" count="0"/>
-        <line num="55" type="method" name="setFilename" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="57" type="stmt" count="0"/>
-        <line num="59" type="stmt" count="0"/>
-        <line num="65" type="method" name="getRevisionFile" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="67" type="stmt" count="0"/>
-        <line num="73" type="method" name="getRevisionClass" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="75" type="stmt" count="0"/>
-        <line num="81" type="method" name="getId" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="83" type="stmt" count="0"/>
-        <metrics loc="84" ncloc="48" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="15" coveredelements="0"/>
+        <line num="35" type="method" name="setId" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="37" type="stmt" count="5"/>
+        <line num="39" type="stmt" count="5"/>
+        <line num="47" type="method" name="setName" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="49" type="stmt" count="3"/>
+        <line num="51" type="stmt" count="3"/>
+        <line num="59" type="method" name="setFilename" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="61" type="stmt" count="3"/>
+        <line num="63" type="stmt" count="3"/>
+        <line num="71" type="method" name="getRevisionFile" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="73" type="stmt" count="2"/>
+        <line num="74" type="stmt" count="1"/>
+        <line num="77" type="stmt" count="1"/>
+        <line num="85" type="method" name="getRevisionClass" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="87" type="stmt" count="2"/>
+        <line num="88" type="stmt" count="1"/>
+        <line num="91" type="stmt" count="1"/>
+        <line num="97" type="method" name="getId" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="99" type="stmt" count="5"/>
+        <metrics loc="101" ncloc="59" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="19" coveredelements="19"/>
       </file>
     </package>
     <package name="Khaydarovm\Clickhouse\Migrator\Config">
       <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Config/Config.php">
         <class name="Khaydarovm\Clickhouse\Migrator\Config\Config" namespace="Khaydarovm\Clickhouse\Migrator\Config" fullPackage="Khaydarovm" package="Khaydarovm">
-          <metrics complexity="7" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="15" coveredelements="15"/>
+          <metrics complexity="8" methods="8" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="17" coveredelements="17"/>
         </class>
-        <line num="18" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="20" type="stmt" count="2"/>
-        <line num="21" type="stmt" count="2"/>
-        <line num="26" type="method" name="getDatabase" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="28" type="stmt" count="1"/>
-        <line num="34" type="method" name="getHost" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="36" type="stmt" count="1"/>
-        <line num="42" type="method" name="getPort" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="44" type="stmt" count="1"/>
-        <line num="50" type="method" name="getMigrationsPath" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="52" type="stmt" count="1"/>
-        <line num="58" type="method" name="getUsername" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="60" type="stmt" count="1"/>
-        <line num="66" type="method" name="getPassword" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="68" type="stmt" count="1"/>
-        <metrics loc="70" ncloc="44" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="15" coveredelements="15"/>
+        <line num="23" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="25" type="stmt" count="3"/>
+        <line num="26" type="stmt" count="3"/>
+        <line num="31" type="method" name="getCluster" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="39" type="method" name="getDatabase" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="47" type="method" name="getHost" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="49" type="stmt" count="2"/>
+        <line num="55" type="method" name="getPort" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="57" type="stmt" count="2"/>
+        <line num="63" type="method" name="getMigrationsPath" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="71" type="method" name="getUsername" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="73" type="stmt" count="1"/>
+        <line num="79" type="method" name="getPassword" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="81" type="stmt" count="1"/>
+        <metrics loc="83" ncloc="49" classes="1" methods="8" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="17" coveredelements="17"/>
       </file>
       <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Config/ConfigManager.php">
         <class name="Khaydarovm\Clickhouse\Migrator\Config\ConfigManager" namespace="Khaydarovm\Clickhouse\Migrator\Config" fullPackage="Khaydarovm" package="Khaydarovm">
-          <metrics complexity="7" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="30" coveredelements="30"/>
+          <metrics complexity="9" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="24" coveredelements="24"/>
         </class>
-        <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="32" type="stmt" count="3"/>
-        <line num="33" type="stmt" count="3"/>
-        <line num="41" type="method" name="getConfig" visibility="public" complexity="4" crap="4" count="3"/>
-        <line num="43" type="stmt" count="3"/>
-        <line num="44" type="stmt" count="1"/>
-        <line num="47" type="stmt" count="2"/>
-        <line num="50" type="stmt" count="2"/>
-        <line num="51" type="stmt" count="1"/>
+        <line num="37" type="method" name="__construct" visibility="public" complexity="4" crap="4" count="6"/>
+        <line num="39" type="stmt" count="6"/>
+        <line num="41" type="stmt" count="6"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="5"/>
+        <line num="48" type="stmt" count="5"/>
+        <line num="49" type="stmt" count="4"/>
+        <line num="50" type="stmt" count="4"/>
+        <line num="51" type="stmt" count="2"/>
         <line num="52" type="stmt" count="1"/>
-        <line num="53" type="stmt" count="2"/>
-        <line num="54" type="stmt" count="1"/>
+        <line num="53" type="stmt" count="1"/>
         <line num="55" type="stmt" count="1"/>
-        <line num="57" type="stmt" count="1"/>
-        <line num="60" type="stmt" count="1"/>
-        <line num="62" type="stmt" count="1"/>
-        <line num="68" type="method" name="getConfigPath" visibility="private" complexity="1" crap="1" count="1"/>
-        <line num="70" type="stmt" count="1"/>
-        <line num="78" type="method" name="prepare" visibility="private" complexity="1" crap="1" count="1"/>
-        <line num="80" type="stmt" count="1"/>
-        <line num="81" type="stmt" count="1"/>
-        <line num="82" type="stmt" count="1"/>
-        <line num="85" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="4"/>
+        <line num="59" type="stmt" count="4"/>
+        <line num="68" type="method" name="getConfig" visibility="public" complexity="3" crap="3" count="3"/>
+        <line num="70" type="stmt" count="3"/>
+        <line num="71" type="stmt" count="1"/>
+        <line num="74" type="stmt" count="3"/>
+        <line num="75" type="stmt" count="1"/>
+        <line num="78" type="stmt" count="2"/>
+        <line num="84" type="method" name="getMigrationsPath" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="86" type="stmt" count="1"/>
-        <line num="87" type="stmt" count="1"/>
-        <line num="88" type="stmt" count="1"/>
-        <line num="89" type="stmt" count="1"/>
-        <line num="90" type="stmt" count="1"/>
-        <line num="91" type="stmt" count="1"/>
-        <line num="92" type="stmt" count="1"/>
-        <metrics loc="95" ncloc="68" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="30" coveredelements="30"/>
+        <line num="92" type="method" name="getConfigPath" visibility="private" complexity="1" crap="1" count="4"/>
+        <line num="94" type="stmt" count="4"/>
+        <metrics loc="96" ncloc="65" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="24" coveredelements="24"/>
       </file>
     </package>
-    <package name="Khaydarovm\Clickhouse\Migrator\Config\Parsers">
-      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Config/Parsers/ConfigParser.php">
-        <class name="Khaydarovm\Clickhouse\Migrator\Config\Parsers\ConfigParser" namespace="Khaydarovm\Clickhouse\Migrator\Config\Parsers" fullPackage="Khaydarovm" package="Khaydarovm">
-          <metrics complexity="1" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
-        </class>
-        <metrics loc="14" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
-      </file>
-      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Config/Parsers/PhpConfigParser.php">
-        <class name="Khaydarovm\Clickhouse\Migrator\Config\Parsers\PhpConfigParser" namespace="Khaydarovm\Clickhouse\Migrator\Config\Parsers" fullPackage="Khaydarovm" package="Khaydarovm">
+    <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Config/Parser/ConfigParserInterface.php">
+      <metrics loc="13" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="Khaydarovm\Clickhouse\Migrator\Config\Parser">
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Config/Parser/PhpConfig.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Config\Parser\PhpConfig" namespace="Khaydarovm\Clickhouse\Migrator\Config\Parser" fullPackage="Khaydarovm" package="Khaydarovm">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
         </class>
-        <line num="16" type="method" name="parse" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="18" type="stmt" count="1"/>
+        <line num="16" type="method" name="parse" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="18" type="stmt" count="4"/>
         <metrics loc="20" ncloc="12" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </file>
-      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Config/Parsers/YamlConfigParser.php">
-        <class name="Khaydarovm\Clickhouse\Migrator\Config\Parsers\YamlConfigParser" namespace="Khaydarovm\Clickhouse\Migrator\Config\Parsers" fullPackage="Khaydarovm" package="Khaydarovm">
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Config/Parser/YamlConfig.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Config\Parser\YamlConfig" namespace="Khaydarovm\Clickhouse\Migrator\Config\Parser" fullPackage="Khaydarovm" package="Khaydarovm">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
         </class>
         <line num="18" type="method" name="parse" visibility="public" complexity="1" crap="1" count="1"/>
@@ -113,20 +280,192 @@
         <metrics loc="22" ncloc="14" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </file>
     </package>
+    <package name="Khaydarovm\Clickhouse\Migrator\Console">
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Console/AbstractCommand.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Console\AbstractCommand" namespace="Khaydarovm\Clickhouse\Migrator\Console" fullPackage="Khaydarovm" package="Khaydarovm">
+          <metrics complexity="10" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="0" elements="30" coveredelements="0"/>
+        </class>
+        <line num="39" type="method" name="configure" visibility="protected" complexity="3" crap="12" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="70" type="method" name="initialize" visibility="protected" complexity="4" crap="20" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="82" type="stmt" count="0"/>
+        <line num="87" type="method" name="getProjectRoot" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="97" type="method" name="init" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="99" type="stmt" count="0"/>
+        <line num="100" type="stmt" count="0"/>
+        <line num="105" type="method" name="getManager" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="107" type="stmt" count="0"/>
+        <metrics loc="109" ncloc="73" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="0" elements="30" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Khaydarovm\Clickhouse\Migrator\Console\Command">
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Console/Command/Create.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Console\Command\Create" namespace="Khaydarovm\Clickhouse\Migrator\Console\Command" fullPackage="Khaydarovm" package="Khaydarovm">
+          <metrics complexity="6" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="0" elements="28" coveredelements="0"/>
+        </class>
+        <line num="27" type="method" name="configure" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="0"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="52" type="method" name="execute" visibility="protected" complexity="5" crap="30" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="81" type="stmt" count="0"/>
+        <line num="83" type="stmt" count="0"/>
+        <line num="85" type="stmt" count="0"/>
+        <metrics loc="87" ncloc="66" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="0" elements="28" coveredelements="0"/>
+      </file>
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Console/Command/Init.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Console\Command\Init" namespace="Khaydarovm\Clickhouse\Migrator\Console\Command" fullPackage="Khaydarovm" package="Khaydarovm">
+          <metrics complexity="5" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="0" elements="23" coveredelements="0"/>
+        </class>
+        <line num="27" type="method" name="configure" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="0"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="52" type="method" name="execute" visibility="protected" complexity="4" crap="20" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <metrics loc="77" ncloc="56" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="0" elements="23" coveredelements="0"/>
+      </file>
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Console/Command/Migrate.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Console\Command\Migrate" namespace="Khaydarovm\Clickhouse\Migrator\Console\Command" fullPackage="Khaydarovm" package="Khaydarovm">
+          <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="0" elements="26" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="configure" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="59" type="method" name="execute" visibility="protected" complexity="2" crap="6" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="81" type="stmt" count="0"/>
+        <metrics loc="83" ncloc="60" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="0" elements="26" coveredelements="0"/>
+      </file>
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Console/Command/Rollback.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Console\Command\Rollback" namespace="Khaydarovm\Clickhouse\Migrator\Console\Command" fullPackage="Khaydarovm" package="Khaydarovm">
+          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="13" coveredelements="0"/>
+        </class>
+        <line num="21" type="method" name="configure" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="23" type="stmt" count="0"/>
+        <line num="26" type="stmt" count="0"/>
+        <line num="27" type="stmt" count="0"/>
+        <line num="28" type="stmt" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="0"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="47" type="method" name="execute" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <metrics loc="51" ncloc="33" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="13" coveredelements="0"/>
+      </file>
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Console/Command/Status.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Console\Command\Status" namespace="Khaydarovm\Clickhouse\Migrator\Console\Command">
+          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="0"/>
+        </class>
+        <line num="16" type="method" name="configure" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="18" type="stmt" count="0"/>
+        <line num="21" type="stmt" count="0"/>
+        <line num="22" type="stmt" count="0"/>
+        <line num="23" type="stmt" count="0"/>
+        <line num="24" type="stmt" count="0"/>
+        <line num="25" type="stmt" count="0"/>
+        <line num="26" type="stmt" count="0"/>
+        <line num="27" type="stmt" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="39" type="method" name="execute" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <metrics loc="43" ncloc="32" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="0"/>
+      </file>
+    </package>
     <package name="Khaydarovm\Clickhouse\Migrator\Exceptions">
-      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Exceptions/ClickhouseMigratorConfigException.php">
-        <class name="Khaydarovm\Clickhouse\Migrator\Exceptions\ClickhouseMigratorConfigException" namespace="Khaydarovm\Clickhouse\Migrator\Exceptions" fullPackage="Khaydarovm" package="Khaydarovm">
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Exceptions/ConfigException.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException" namespace="Khaydarovm\Clickhouse\Migrator\Exceptions" fullPackage="Khaydarovm" package="Khaydarovm">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="11" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Exceptions/ClickhouseMigratorException.php">
-        <class name="Khaydarovm\Clickhouse\Migrator\Exceptions\ClickhouseMigratorException" namespace="Khaydarovm\Clickhouse\Migrator\Exceptions" fullPackage="Khaydarovm" package="Khaydarovm">
+      <file name="/Users/khaydarovm/Development/opensource/php-clickhouse-migrator/src/Exceptions/MigrationException.php">
+        <class name="Khaydarovm\Clickhouse\Migrator\Exceptions\MigrationException" namespace="Khaydarovm\Clickhouse\Migrator\Exceptions" fullPackage="Khaydarovm" package="Khaydarovm">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="11" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
     </package>
-    <metrics files="9" loc="409" ncloc="143" classes="5" methods="19" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="45" coveredstatements="36" elements="64" coveredelements="49"/>
+    <metrics files="18" loc="1391" ncloc="919" classes="15" methods="60" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="288" coveredstatements="118" elements="348" coveredelements="150"/>
   </project>
 </coverage>

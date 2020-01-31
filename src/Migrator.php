@@ -7,6 +7,11 @@ use ClickHouseDB\Client;
 use Khaydarovm\Clickhouse\Migrator\Config\Config;
 use Khaydarovm\Clickhouse\Migrator\Exceptions\MigrationException;
 
+/**
+ * Class Migrator
+ *
+ * @package Khaydarovm\Clickhouse\Migrator
+ */
 class Migrator
 {
     /**
@@ -45,10 +50,8 @@ class Migrator
      * @param Client $client
      * @param Config $config
      */
-    public function __construct(
-        Client $client,
-        Config $config
-    ) {
+    public function __construct(Client $client, Config $config)
+    {
         $this->client = $client;
         $this->config = $config;
     }
@@ -73,7 +76,6 @@ class Migrator
         ', $this->schema);
 
         $this->client->write($sql);
-        $this->appliedRevisions = $this->getAppliedRevisions();
     }
 
     /**
@@ -106,7 +108,7 @@ class Migrator
         try {
             $instance->up();
         } catch (\Exception $e) {
-            throw new MigrationException('Migration error');
+            throw new MigrationException(sprintf('Migration error: %s', $e->getMessage()));
         }
 
         // stop time and save revision
@@ -125,10 +127,11 @@ class Migrator
 
     /**
      * @param Revision $revision
+     * @param string   $status
      *
      * @throws MigrationException
      */
-    public function afterExecution(Revision $revision): void
+    public function afterExecution(Revision $revision, string $status = 'up'): void
     {
         $this->endTime = time();
 
@@ -141,7 +144,8 @@ class Migrator
                         (int) $revision->getId(),
                         $revision->getRevisionClass(),
                         $this->startTime,
-                        $this->endTime
+                        $this->endTime,
+                        $status
                     ]
                 ],
                 [
@@ -149,15 +153,16 @@ class Migrator
                     'version',
                     'migration_name',
                     'start_time',
-                    'end_time'
+                    'end_time',
+                    'status'
                 ]
             );
         } catch (\Exception $e) {
-            throw new MigrationException('Can not save revision report');
+            throw new MigrationException(sprintf('Revision error: %s', $e->getMessage()));
         }
 
         if ($statement->isError()) {
-            throw new MigrationException('Error while saving report');
+            throw new MigrationException('Clickhouse statement error');
         }
     }
 
