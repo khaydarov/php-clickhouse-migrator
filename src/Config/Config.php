@@ -5,18 +5,24 @@ namespace Khaydarovm\Clickhouse\Migrator\Config;
 
 /**
  * Class Config
+ *
  * @package Khaydarovm\Clickhouse\Migrator\Config
  */
-class Config
+final class Config
 {
     /**
      * @var array
      */
-    private $config;
+    private $data;
 
-    public function __construct(array $config)
+    /**
+     * Config constructor.
+     *
+     * @param array $data
+     */
+    public function __construct(array $data)
     {
-        $this->config = $config;
+        $this->data = $data;
     }
 
     /**
@@ -24,7 +30,7 @@ class Config
      */
     public function getDatabase(): string
     {
-        return $this->config['database'];
+        return $this->data['database'];
     }
 
     /**
@@ -32,15 +38,15 @@ class Config
      */
     public function getHost(): string
     {
-        return $this->config['host'];
+        return $this->data['host'];
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getPort(): string
+    public function getPort(): int
     {
-        return $this->config['port'];
+        return $this->data['port'];
     }
 
     /**
@@ -48,7 +54,7 @@ class Config
      */
     public function getMigrationsPath(): string
     {
-        return $this->config['migrationsPath'];
+        return $this->data['migrationsPath'];
     }
 
     /**
@@ -56,7 +62,7 @@ class Config
      */
     public function getUsername(): string
     {
-        return $this->config['username'];
+        return $this->data['username'];
     }
 
     /**
@@ -64,6 +70,6 @@ class Config
      */
     public function getPassword(): string
     {
-        return $this->config['password'];
+        return $this->data['password'] ?? '';
     }
 }

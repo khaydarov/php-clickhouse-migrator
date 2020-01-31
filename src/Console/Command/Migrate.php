@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Khaydarovm\Clickhouse\Migrator\Console\Command;
 
 use Khaydarovm\Clickhouse\Migrator\Console\AbstractCommand;
+use Khaydarovm\Clickhouse\Migrator\Revision;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -44,19 +45,25 @@ class Migrate extends AbstractCommand
      * @param OutputInterface $output
      *
      * @throws \Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException
+     * @throws \Khaydarovm\Clickhouse\Migrator\Exceptions\MigrationException
      *
      * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $environment = $input->getOption('environment');
 
-        if (empty($environment)) {
-            throw new \Exception("Environment is empty");
-        }
-
         $this->getManager()
             ->prepare($environment)
+            ->beforeRevisionMigration(function (Revision $revision) use ($output) {
+                $output->writeln(sprintf('Revision: %s', $revision->getRevisionClass()));
+            })
+            ->afterRevisionMigration(function (Revision $revision) use ($output) {
+                $output->writeln('done');
+            })
+            ->whenDone(function () use ($output) {
+                $output->writeln('<info>Successfully migrated!</info>');
+            })
             ->migrate();
 
         return 0;

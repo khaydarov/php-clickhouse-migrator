@@ -14,7 +14,6 @@ use Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException;
  */
 class ConfigManager
 {
-    public const DEFAULT_CONFIG_FILENAME = 'config';
     public const PHP_CONFIG = 'php';
     public const YAML_CONFIG = 'yaml';
 
@@ -24,22 +23,21 @@ class ConfigManager
     private $configPath;
 
     /**
+     * @var array
+     */
+    private $payload;
+
+    /**
      * ConfigManager constructor.
      *
      * @param string $configPath
+     *
+     * @throws ConfigException
      */
     public function __construct(string $configPath)
     {
         $this->configPath = $configPath;
-    }
 
-    /**
-     * @throws ConfigException
-     *
-     * @return Config
-     */
-    public function getConfig(): Config
-    {
         if (!file_exists($this->configPath)) {
             throw new ConfigException('Config file not found');
         }
@@ -57,10 +55,35 @@ class ConfigManager
                 throw new ConfigException('Extension is not supported');
         }
 
-        $parsedConfig = $parser->parse($this->getConfigPath());
-        $config = $this->prepare($parsedConfig);
+        $this->payload = $parser->parse($this->getConfigPath());
+    }
 
-        return new Config($config);
+    /**
+     * @param string|null $environment
+     *
+     * @throws ConfigException
+     *
+     * @return Config
+     */
+    public function getConfig(string $environment = null): Config
+    {
+        if (!$environment) {
+            $environment = $this->payload['default'];
+        }
+
+        if (!isset($this->payload['environments'][$environment])) {
+            throw new ConfigException('Environment does not exist');
+        }
+
+        return new Config($this->payload['environments'][$environment]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMigrationsPath(): string
+    {
+        return $this->payload['paths']['migrations'];
     }
 
     /**
@@ -69,28 +92,5 @@ class ConfigManager
     private function getConfigPath(): string
     {
         return $this->configPath;
-    }
-
-    /**
-     * @param array $parsedConfig
-     *
-     * @return array
-     */
-    private function prepare(array $parsedConfig): array
-    {
-        $defaultEnvironment = $parsedConfig['default_environment'];
-        $environmentConfig = $parsedConfig['environments'][$defaultEnvironment];
-        $migrationsPath = $parsedConfig['paths']['migrations'];
-
-        return [
-            'defaultEnvironment' => $defaultEnvironment,
-            'migrationsPath' => $migrationsPath,
-            'cluster' => $environmentConfig['cluster'],
-            'host' => $environmentConfig['host'],
-            'port' => $environmentConfig['port'],
-            'database' => $environmentConfig['database'],
-            'username' => $environmentConfig['username'],
-            'password' => $environmentConfig['password']
-        ];
     }
 }

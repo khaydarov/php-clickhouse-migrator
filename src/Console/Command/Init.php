@@ -4,10 +4,16 @@ declare(strict_types=1);
 namespace Khaydarovm\Clickhouse\Migrator\Console\Command;
 
 use Khaydarovm\Clickhouse\Migrator\Console\AbstractCommand;
+use Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class Init
+ *
+ * @package Khaydarovm\Clickhouse\Migrator\Console\Command
+ */
 class Init extends AbstractCommand
 {
     /**
@@ -15,14 +21,17 @@ class Init extends AbstractCommand
      */
     private $allowedFormats = ['php', 'yaml'];
 
-    protected function configure()
+    /**
+     * @inheritDoc
+     */
+    protected function configure(): void
     {
         parent::configure();
 
         $this
             ->setName('init')
-            ->setDescription('initialize clickhouse migrations')
-            ->setHelp('initialize clickhouse migrations')
+            ->setDescription('initialize clickhouse migrations project')
+            ->setHelp('initialize clickhouse migrations project')
             ->addOption(
                 '--format',
                 '-f',
@@ -34,29 +43,33 @@ class Init extends AbstractCommand
      * @param InputInterface  $input
      * @param OutputInterface $output
      *
-     * @throws \Exception
+     * @throws ConfigException
+     *
+     * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $projectPath = $this->getProjectRoot();
 
         if (!is_writable($projectPath)) {
-            throw new \Exception(sprintf("Directory %s must be writable", $projectPath));
+            throw new ConfigException(sprintf('Directory %s must be writable', $projectPath));
         }
 
         $format = $input->getOption('format');
 
         if (!in_array($format, $this->allowedFormats, true)) {
-            throw new \Exception(sprintf("Config format not allowed"));
+            throw new ConfigException(sprintf('Config format not allowed'));
         }
 
-        $template = sprintf("%s/../../../templates/config.%s", __DIR__, $format);
-        $targetPath = sprintf("%s/config.%s", $projectPath, $format);
+        $template = sprintf('%s/../../../templates/config.%s', __DIR__, $format);
+        $targetPath = sprintf('%s/config.%s', $projectPath, $format);
 
         if (!copy($template, $targetPath)) {
-            throw new \Exception(sprintf("Can't write config to target directory"));
+            throw new ConfigException(sprintf("Can't write config to target directory"));
         }
 
-        $output->writeln(sprintf("config.%s created at %s", $format, $projectPath));
+        $output->writeln(sprintf('<info>config.%s created at %s</info>', $format, $projectPath));
+
+        return 0;
     }
 }

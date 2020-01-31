@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Khaydarovm\Clickhouse\Migrator\Console;
 
+use Khaydarovm\Clickhouse\Migrator\Config\Config;
+use Khaydarovm\Clickhouse\Migrator\Config\ConfigManager;
+use Khaydarovm\Clickhouse\Migrator\Exceptions\ConfigException;
 use Khaydarovm\Clickhouse\Migrator\Manager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -31,6 +34,9 @@ abstract class AbstractCommand extends Command
      */
     private $manager;
 
+    /**
+     * @inheritDoc
+     */
     protected function configure()
     {
         parent::configure();
@@ -54,6 +60,14 @@ abstract class AbstractCommand extends Command
         }
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @throws ConfigException
+     */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         parent::initialize($input, $output);
@@ -74,12 +88,12 @@ abstract class AbstractCommand extends Command
 
     /**
      * @param string $path
+     *
+     * @throws ConfigException
      */
-    protected function init(string $path)
+    protected function init(string $path): void
     {
-        $manager = new Manager($path);
-
-        $this->manager = $manager;
+        $this->manager = new Manager(new ConfigManager($path));
     }
 
     /**

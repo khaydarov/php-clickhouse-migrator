@@ -1,0 +1,11 @@
+default: development
+paths:
+    migrations: migrations
+environments:
+    development:
+        cluster: local
+        host: localhost
+        port: 8123
+        database: test
+        username: default
+        password:

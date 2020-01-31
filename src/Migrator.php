@@ -5,6 +5,7 @@ namespace Khaydarovm\Clickhouse\Migrator;
 
 use ClickHouseDB\Client;
 use Khaydarovm\Clickhouse\Migrator\Config\Config;
+use Khaydarovm\Clickhouse\Migrator\Exceptions\MigrationException;
 
 class Migrator
 {
@@ -44,13 +45,19 @@ class Migrator
      * @param Client $client
      * @param Config $config
      */
-    public function __construct(Client $client, Config $config)
-    {
+    public function __construct(
+        Client $client,
+        Config $config
+    ) {
         $this->client = $client;
         $this->config = $config;
     }
 
-    public function prepare()
+    /**
+     * Creates table with migrations
+     * Prepares applied revisions
+     */
+    public function prepare(): void
     {
         $sql = sprintf('
             CREATE TABLE IF NOT EXISTS %s (
@@ -58,64 +65,70 @@ class Migrator
               version UInt64,
               migration_name String,
               start_time datetime,
-              end_time datetime
+              end_time datetime,
+              status String
             ) ENGINE = MergeTree()
             PARTITION BY toYYYYMM(event_date)
             ORDER BY (version)
         ', $this->schema);
 
         $this->client->write($sql);
-
         $this->appliedRevisions = $this->getAppliedRevisions();
     }
 
     /**
      * @param Revision $revision
-     *
-     * @throws Exceptions\MigrationException
      */
-    public function beforeExecution(Revision $revision)
+    public function beforeExecution(Revision $revision): void
     {
         $this->startTime = time();
-        echo sprintf("[Migrator] %s:%s", $revision->getId(), $revision->getRevisionClass());
-        echo PHP_EOL;
     }
 
     /**
-     * @throws Exceptions\MigrationException
+     * @param string   $path
+     * @param Revision $revision
+     *
+     * @throws MigrationException
      */
-    public function migrate()
+    public function migrate(string $path, Revision $revision): void
     {
-        $migrationPath = $this->config->getMigrationsPath();
-        $revisions = $this->getAvailableRevisions($migrationPath);
+        include_once $path;
 
-        foreach ($revisions as $revision) {
-            /** @var Revision $revision */
-            $path = $this->getRevisionFile($migrationPath, $revision);
+        $class = $revision->getRevisionClass();
 
-            include_once $path;
+        /** @var AbstractMigration $instance */
+        $instance = new $class($this->client, $this->config);
 
-            $revisionClass = $revision->getRevisionClass();
+        // set timer
+        $this->beforeExecution($revision);
 
-            /** @var AbstractMigration $revisionInstance */
-            $revisionInstance = new $revisionClass($this->client, $this->config);
-
-            try {
-                $this->beforeExecution($revision);
-                $revisionInstance->up();
-                $this->afterExecution($revision);
-            } catch (\Exception $e) {
-                //
-            }
+        // try to up
+        try {
+            $instance->up();
+        } catch (\Exception $e) {
+            throw new MigrationException('Migration error');
         }
+
+        // stop time and save revision
+        $this->afterExecution($revision);
+    }
+
+    /**
+     * @todo implement
+     *
+     * @param string   $path
+     * @param Revision $revision
+     */
+    public function rollback(string $path, Revision $revision): void
+    {
     }
 
     /**
      * @param Revision $revision
      *
-     * @throws \Exception
+     * @throws MigrationException
      */
-    public function afterExecution(Revision $revision)
+    public function afterExecution(Revision $revision): void
     {
         $this->endTime = time();
 
@@ -140,14 +153,12 @@ class Migrator
                 ]
             );
         } catch (\Exception $e) {
-            throw new \Exception("after error");
+            throw new MigrationException('Can not save revision report');
         }
 
         if ($statement->isError()) {
-            throw new \Exception("erorr");
+            throw new MigrationException('Error while saving report');
         }
-
-        echo sprintf("[Migrator]: done!\n\n");
     }
 
     /**
@@ -155,57 +166,11 @@ class Migrator
      *
      * @return array
      */
-    private function getAppliedRevisions(): array
+    public function getAppliedRevisions(): array
     {
-        $sql = sprintf("SELECT version FROM %s", $this->schema);
+        $sql = sprintf('SELECT version FROM %s', $this->schema);
         $statement = $this->client->select($sql);
 
         return array_column($statement->rows(), 'version');
-    }
-
-    /**
-     * @param string $path
-     *
-     * @return array
-     */
-    private function getAvailableRevisions(string $path): array
-    {
-        $list = [];
-        $directory = new \DirectoryIterator($path);
-
-        foreach ($directory as $file) {
-            if (!$file->isFile()) {
-                continue;
-            }
-
-            list($id, $className) = explode('_', $file->getBasename('.php'));
-
-            if (\in_array($id, $this->appliedRevisions, true)) {
-                continue;
-            }
-
-            $revision = new Revision();
-            $revision
-                ->setId($id)
-                ->setName($className)
-                ->setFilename($file->getFilename());
-
-            $list[$id] = $revision;
-        }
-
-        asort($list);
-
-        return $list;
-    }
-
-    /**
-     * @param string   $path
-     * @param Revision $revision
-     *
-     * @return string
-     */
-    private function getRevisionFile(string $path, Revision $revision): string
-    {
-        return sprintf('%s/%s', $path, $revision->getRevisionFile());
     }
 }
