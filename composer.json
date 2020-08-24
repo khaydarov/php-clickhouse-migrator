@@ -41,5 +41,6 @@
         ],
         "bench": "./vendor/bin/phpbench run benchmarks/  --report=default",
         "infection": "infection"
-    }
+    },
+    "bin": ["bin/clickhouse-migrator"]
 }
