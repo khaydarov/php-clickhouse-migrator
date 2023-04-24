@@ -14,19 +14,10 @@
         }
     },
     "require": {
-        "php": ">=7.0",
-        "smi2/phpclickhouse": "^1.3",
-        "symfony/yaml": "^5.0",
-        "symfony/console": "^5.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^8.5",
-        "php-coveralls/php-coveralls": "^2.2",
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "roave/security-advisories": "dev-master",
-        "phpmd/phpmd": "^2.8",
-        "phpbench/phpbench": "@dev",
-        "psy/psysh": "@stable"
+        "php": "^8.0",
+        "symfony/console": "^6.2",
+        "symfony/yaml": "^6.2",
+        "smi2/phpclickhouse": "^1.5"
     },
     "suggest": {
     },
@@ -42,5 +33,11 @@
         "bench": "./vendor/bin/phpbench run benchmarks/  --report=default",
         "infection": "infection"
     },
-    "bin": ["bin/clickhouse-migrator"]
+    "bin": ["bin/clickhouse-migrator"],
+    "require-dev": {
+        "phpunit/phpunit": "^10.1",
+        "php-coveralls/php-coveralls": "^2.5",
+        "friendsofphp/php-cs-fixer": "^3.16",
+        "phpbench/phpbench": "^1.2"
+    }
 }

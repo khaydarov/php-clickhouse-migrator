@@ -34,7 +34,7 @@ class RevisionTest extends TestCase
     public function testRevisionDefaultFilename()
     {
         $this->expectException(MigrationException::class);
-        $this->expectErrorMessage('File name is not defined');
+        $this->expectExceptionMessage('File name is not defined');
 
         $id = '11';
         $revision = new Revision();
@@ -51,7 +51,7 @@ class RevisionTest extends TestCase
     public function testRevisionDefaultClassname()
     {
         $this->expectException(MigrationException::class);
-        $this->expectErrorMessage('class name is not defined');
+        $this->expectExceptionMessage('class name is not defined');
 
         $id = '11';
         $revision = new Revision();
